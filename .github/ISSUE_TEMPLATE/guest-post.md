@@ -1,6 +1,6 @@
 ---
 name: Guest Post
-about: Writing for us?
+about: Wanna writing a post here?
 title: ''
 labels: guess post, need review
 assignees: ''
