@@ -1,11 +1,10 @@
 # blog by evilfactory
 
-To read our blog posts, you can read it [here](https://github.com/evilfactorylabs/blog/issues).
+To read our legacy blog posts, you can read it [here](https://github.com/evilfactorylabs/blog/issues).
 
 ## Subscribe
 
-You can subscribe to this repo, so you will get notified if there is a new post
-by [watching to this repo](https://github.com/evilfactorylabs/blog/watchers).
+You can subscribe to our RSS feed [here](https://blog.evilfactory.id/sitemap.xml)
 
 ## License
 
