@@ -4,7 +4,7 @@ To read our legacy blog posts, you can read it [here](https://github.com/evilfac
 
 ## Subscribe
 
-You can subscribe to our RSS feed [here](https://blog.evilfactory.id/sitemap.xml)
+You can subscribe to our RSS feed [here](https://engineering.evilfactory.id/sitemap.xml)
 
 ## License
 

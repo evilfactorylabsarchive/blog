@@ -1,7 +1,7 @@
 module.exports = {
   title: 'evilfactorylabs blog',
   tagline: 'Modern web technologies R&D team',
-  url: 'https://evilfactory.id/',
+  url: 'https://engineering.evilfactory.id/',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'evilfactorylabs',
