@@ -2,7 +2,7 @@
 id: finding-memo
 title: Finding Memo
 author: ri7nz
-authorTitle: Undefined @ evilfactorylabs
+authorTitle: BADGUY @ evilfactorylabs
 authorURL: https://twitter.com/ri7nz
 authorImageURL: https://avatars2.githubusercontent.com/u/16365952?s=96&v=4
 authorTwitter: ri7nz
