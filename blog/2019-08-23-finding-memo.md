@@ -2,11 +2,11 @@
 id: finding-memo
 title: Finding Memo
 author: ri7nz
-authorTitle: Undefined @ evilfactorylabs
+authorTitle: Bad Guy @ evilfactorylabs
 authorURL: https://twitter.com/ri7nz
 authorImageURL: https://avatars2.githubusercontent.com/u/16365952?s=96&v=4
 authorTwitter: ri7nz
-tags: [Frontend, JavaScript, Functional]
+tags: [JavaScript, Functional, Memoize, Measure, Performance]
 ---
 
 Tulisan singkat ini merupakan tulisan yang saya tulis berdasarkan `Perjalanan` Hidup di tatanan dunia `Javascript`.
@@ -74,3 +74,83 @@ Fib: 8
 Fib: 13
 Fib: 21
 ```
+
+Sekarang, kita lanjut membuat `Functional` untuk mendapatkan berapa nilai `Fibonacci` dari 10, contohnya.
+
+```javascript
+Fib(10) // ekspektasinya adalah 55
+```
+
+Why ? 
+
+```sql
+ -------------------------
+| 1 1 2 3 5 8 13 21 34 55 |
+ -------------------------
+| 1 2 3 4 5 6 7  8  9  10 |
+ -------------------------
+```
+
+Cara menyelesaikannya, kita bisa membuat sebuah fungsi `Recursive`, contohnya seperti ini: 
+
+```javascript
+// fib.js 
+module.exports = function Fib(num){ 
+    return num <= 1 ? num : Fib(num-1) + Fib(num-2) 
+}
+```
+
+Fungsi `Recursive` yakni fungsi dalam pemrograman yang menggabungkan 2 konsep antara metode [optimasi matematika / pemrograman matematika](https://en.wikipedia.org/wiki/Mathematical_optimization) dan metode pemrograman komputer, atau biasa juga disebut sebagai bagian dari [Dynamic Programming](https://en.wikipedia.org/wiki/Dynamic_programming).
+
+Namun, metode penyelesaian masalah `Fibonacci` diatas begitu lambat jika parameter yang diberikan nilainya semakin besar. 
+Mari kita ukur waktu ekseskusi dari fungsi `Fib(num)` diatas dengan membuat fungsi untuk mengukur fungsi sederhana, yang kita sebut `measure(fn, param)`, contoh kodenya ada dibawah ini:
+
+```javascript
+/* @url https://nodejs.org/api/perf_hooks.html#perf_hooks_performance_timing_api */
+
+const {PerformanceObserver,performance} = require('perf_hooks')
+
+module.exports = function measure(fn, param){
+    console.log('Mengukur Waktu Ekseskusi dari fungsi:', fn.name)
+    console.log('dengan Parameter:', param)
+
+    let result = null;
+
+    const wrap = performance.timerify(fn.bind(this, param))
+
+    const obs = new PerformanceObserver((list) => {
+        result = list.getEntries()[0].duration 
+        console.log(result);
+        obs.disconnect();
+    });
+
+    obs.observe({ entryTypes: ['function'] });
+
+    wrap();
+
+    return result 
+}
+```
+
+cara mengukur nya seperti apa, berikut contohnya saya menggunakan Node.js
+```javascript
+const measure = require('./measure')
+
+const Fib = require('./fib') // kode fibonacci simpan yah namanya fib.js or whatever
+
+// definisikan parameter apa saja yg akan diberikan untuk fungsi Fib 
+const params = [ 10, 15, 20 ]
+
+// definisikan list array untuk menampung semua hasil
+const resultOfFib = params.map(param => measure(Fib, param))
+
+console.log(resultOfFib)
+// outputnya berupa array 
+// contoh hasil yg saya dapatan
+[ 0.033238, 0.347195, 1.120716, 17.617482 ]
+```
+
+# Memo
+Dari fungsi diatas, dapat menghasilkan angka `Fibonacci` sesuai parameter yang kita berikan.
+Jika nilai 
+
